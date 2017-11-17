@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Timer</title>
+
+</head>
+<body>
+<div>
+   <span>Timer: <span><span id="displayTime"></span>
+   <input type="button" value="Reset" onclick="resetTimer()" />
+</div>
+
+<script>
+var forSetDate = null;
+var diffDate = null;
+var totalMinutes = null;
+var myVar = null;
+//diffDate.setMinutes(forSetDate.getMinutes() + 1);
+
+function getTime() {
+forSetDate = new Date();
+if(parseInt(totalMinutes) == 0){
+	alert("Time over");
+	clearInterval(myVar);
+}
+totalMinutes = Number((diffDate-forSetDate)/1000);
+var minutes = parseInt(totalMinutes / 60);
+var seconds = parseInt(totalMinutes % 60);
+document.getElementById("displayTime").innerHTML = minutes + " : " + seconds;
+}
+//startTimer();
+function startTimer() {
+    myVar = setInterval(getTime, 1000);
+}
+
+function resetTimer() {
+    forSetDate = new Date();
+    diffDate = new Date();
+    totalMinutes = null;
+    diffDate.setMinutes(forSetDate.getMinutes() + 1);
+	clearInterval(myVar);
+	startTimer();
+}
+resetTimer();
+</script>
+</body>
+</html>
